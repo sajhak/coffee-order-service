@@ -1,0 +1,35 @@
+
+== Create DB user =======
+
+postgres=# create user coffeeappuser;
+CREATE ROLE
+postgres=# alter user coffeeappuser with encrypted password 'password';
+ALTER ROLE
+postgres=# create database coffeeapp;
+CREATE DATABASE
+postgres=# grant all privileges on database coffeeapp to coffeeappuser;
+GRANT
+coffeeapp=# grant all privileges on table orders to coffeeappuser;
+GRANT
+coffeeapp=# grant all privileges on table items to coffeeappuser;
+GRANT
+coffeeapp=# 
+coffeeapp=# grant all privileges on sequence orders_id_seq to coffeeappuser;
+coffeeapp=# grant all privileges on sequence items_id_seq to coffeeappuser;
+GRANT
+
+
+
+========== Create tables ===========
+
+Orders table
+-------------
+CREATE TABLE orders ( id serial PRIMARY KEY, description VARCHAR ( 50 ) NOT NULL,
+ customerId VARCHAR ( 20 ) NOT NULL, status VARCHAR ( 10 ) NOT NULL, createdDate TIMESTAMP default current_timestamp, updatedDate TIMESTAMP default current_timestamp );
+
+
+Items table
+-----------
+CREATE TABLE items (id serial PRIMARY KEY, description VARCHAR ( 50 ) NOT NULL,
+	code VARCHAR ( 20 ) NOT NULL,	price DECIMAL ( 10 ) NOT NULL, orderId VARCHAR ( 20 ) NOT NULL );
+========================
