@@ -1,11 +1,35 @@
 package com.house.coffee.domainobjects;
 
-import lombok.Data;
+import lombok.*;
 
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+
+@Entity
+@Table(name = "orders")
+@NoArgsConstructor
+@ToString
 @Data
-public class Order {
+public class Order implements Serializable {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
 	private String description;
+
+	@Column(name = "customerid")
+	private String customerId;
+
+	private String status;
+
+	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Item> itemList;
+
+	@Column(name = "createddate")
+	private Date createdDate;
+
+	@Column(name = "updateddate")
+	private Date updatedDate;
 }

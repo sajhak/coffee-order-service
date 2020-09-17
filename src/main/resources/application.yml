@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: coffeeapp
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/coffeeapp"
+    username: coffeeappuser
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
