@@ -37,3 +37,16 @@ curl --location --request POST 'http://localhost:8081/orders/18/items' \
 ```
 curl --location --request GET 'http://localhost:8081/orders/18'
 ```
+
+--
+
+
+* Search order with a pattern
+
+-- GET /orders/search?pattern=customerId:136
+---
+```
+curl --location --request GET 'http://localhost:8081/orders/search?pattern=customerId:136,status:CREATED'
+```
+
+
